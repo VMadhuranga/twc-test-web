@@ -8,7 +8,9 @@ import {
 import App from "./App.jsx";
 import ErrorPage from "./ErrorPage.jsx";
 import Login from "./components/login/Login.jsx";
+import Register from "./components/register/Register.jsx";
 import loginAction from "./actions/loginAction.js";
+import registerAction from "./actions/registerAction.js";
 
 const baseUrl = "http://localhost:3000";
 const router = createBrowserRouter([
@@ -34,6 +36,22 @@ const router = createBrowserRouter([
           }
 
           return redirect(`/${successData.userId}`);
+        },
+      },
+      {
+        path: "/register",
+        element: <Register />,
+        action: async ({ request }) => {
+          const formData = Object.fromEntries(
+            (await request.formData()).entries(),
+          );
+          const errorData = await registerAction(baseUrl, formData);
+
+          if (errorData) {
+            return errorData.data;
+          }
+
+          return redirect("/login");
         },
       },
     ],
