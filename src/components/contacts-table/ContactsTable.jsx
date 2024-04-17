@@ -9,6 +9,16 @@ const ContactsTable = ({ contacts }) => {
     navigate(`${location.pathname}/${contactId}/edit`);
   }
 
+  function handleDelete(e, contactName) {
+    const confirmedDeletion = confirm(
+      `Do you want to delete the contact "${contactName}"?`,
+    );
+
+    if (!confirmedDeletion) {
+      e.preventDefault();
+    }
+  }
+
   return (
     <table>
       <thead>
@@ -33,7 +43,15 @@ const ContactsTable = ({ contacts }) => {
                   <button type="button" onClick={() => handleEdit(contact._id)}>
                     Edit
                   </button>
-                  <Form method="delete">
+                  <Form
+                    method="delete"
+                    onSubmit={(e) => {
+                      handleDelete(
+                        e,
+                        `${contact.firstName} ${contact.lastName}`,
+                      );
+                    }}
+                  >
                     <input
                       type="hidden"
                       name="contact_id"
