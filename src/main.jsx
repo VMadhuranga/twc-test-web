@@ -21,7 +21,7 @@ import editContactAction from "./actions/editContactAction.js";
 import contactLoader from "./loaders/contactLoader.js";
 import logoutLoader from "./loaders/logoutLoader.js";
 
-const baseUrl = "http://localhost:3000";
+const baseUrl = import.meta.env.VITE_BACKEND_URL;
 const router = createBrowserRouter([
   {
     path: "/",
