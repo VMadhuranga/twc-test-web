@@ -19,6 +19,7 @@ import deleteContactAction from "./actions/deleteContactAction.js";
 import createContactAction from "./actions/createContactAction.js";
 import editContactAction from "./actions/editContactAction.js";
 import contactLoader from "./loaders/contactLoader.js";
+import logoutLoader from "./loaders/logoutLoader.js";
 
 const baseUrl = "http://localhost:3000";
 const router = createBrowserRouter([
@@ -44,6 +45,13 @@ const router = createBrowserRouter([
           }
 
           return redirect(`/${successData.userId}/contacts`);
+        },
+      },
+      {
+        path: "/logout",
+        loader: async () => {
+          await logoutLoader(baseUrl);
+          return redirect("/login");
         },
       },
       {
