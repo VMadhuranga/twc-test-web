@@ -27,6 +27,15 @@ const router = createBrowserRouter([
     path: "/",
     element: <App />,
     errorElement: <ErrorPage />,
+    loader: ({ request }) => {
+      const url = new URL(request.url);
+
+      if (url.pathname === "/") {
+        return redirect("/login");
+      }
+
+      return null;
+    },
     children: [
       {
         path: "/login",
