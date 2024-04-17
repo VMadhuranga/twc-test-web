@@ -10,10 +10,12 @@ import ErrorPage from "./ErrorPage.jsx";
 import Login from "./components/login/Login.jsx";
 import Register from "./components/register/Register.jsx";
 import Contacts from "./components/contacts/Contacts.jsx";
+import NewContact from "./components/new-contact/NewContact.jsx";
 import loginAction from "./actions/loginAction.js";
 import registerAction from "./actions/registerAction.js";
 import contactsLoader from "./loaders/contactsLoader.js";
 import deleteContactAction from "./actions/deleteContactAction.js";
+import createContactAction from "./actions/createContactAction.js";
 
 const baseUrl = "http://localhost:3000";
 const router = createBrowserRouter([
@@ -81,6 +83,26 @@ const router = createBrowserRouter([
             await deleteContactAction(baseUrl, params.user_id, contactId);
             return null;
           }
+        },
+      },
+      {
+        path: "/:user_id/contacts/new",
+        element: <NewContact />,
+        action: async ({ request, params }) => {
+          const formData = Object.fromEntries(
+            (await request.formData()).entries(),
+          );
+          const errorData = await createContactAction(
+            baseUrl,
+            params.user_id,
+            formData,
+          );
+
+          if (errorData) {
+            return errorData.data;
+          }
+
+          return redirect(`/${params.user_id}/contacts`);
         },
       },
     ],
