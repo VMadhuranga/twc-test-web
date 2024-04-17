@@ -11,11 +11,14 @@ import Login from "./components/login/Login.jsx";
 import Register from "./components/register/Register.jsx";
 import Contacts from "./components/contacts/Contacts.jsx";
 import NewContact from "./components/new-contact/NewContact.jsx";
+import EditContact from "./components/edit-contact/EditContact.jsx";
 import loginAction from "./actions/loginAction.js";
 import registerAction from "./actions/registerAction.js";
 import contactsLoader from "./loaders/contactsLoader.js";
 import deleteContactAction from "./actions/deleteContactAction.js";
 import createContactAction from "./actions/createContactAction.js";
+import editContactAction from "./actions/editContactAction.js";
+import contactLoader from "./loaders/contactLoader.js";
 
 const baseUrl = "http://localhost:3000";
 const router = createBrowserRouter([
@@ -95,6 +98,44 @@ const router = createBrowserRouter([
           const errorData = await createContactAction(
             baseUrl,
             params.user_id,
+            formData,
+          );
+
+          if (errorData) {
+            return errorData.data;
+          }
+
+          return redirect(`/${params.user_id}/contacts`);
+        },
+      },
+      {
+        path: "/:user_id/contacts/:contact_id/edit",
+        element: <EditContact />,
+        loader: async ({ params }) => {
+          const { successData, errorData } = await contactLoader(
+            baseUrl,
+            params.user_id,
+            params.contact_id,
+          );
+
+          if (errorData) {
+            throw new Response(null, {
+              status: errorData.status,
+              statusText: errorData.statusText,
+            });
+          }
+
+          return successData.contact;
+        },
+        action: async ({ request, params }) => {
+          const formData = Object.fromEntries(
+            (await request.formData()).entries(),
+          );
+          console.log(formData);
+          const errorData = await editContactAction(
+            baseUrl,
+            params.user_id,
+            params.contact_id,
             formData,
           );
 
