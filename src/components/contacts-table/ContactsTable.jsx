@@ -1,5 +1,8 @@
 import PropTypes from "prop-types";
 import { Form, useNavigate, useLocation } from "react-router-dom";
+import styles from "./ContactsTable.module.css";
+import EditIcon from "../../assets/editIcon.png";
+import DeleteIcon from "../../assets/deleteIcon.png";
 
 const ContactsTable = ({ contacts }) => {
   const navigate = useNavigate();
@@ -20,7 +23,7 @@ const ContactsTable = ({ contacts }) => {
   }
 
   return (
-    <table>
+    <table className={styles.contactsTable}>
       <thead>
         <tr>
           <th>Full name</th>
@@ -41,7 +44,7 @@ const ContactsTable = ({ contacts }) => {
                 <td>{contact.phoneNumber}</td>
                 <td>
                   <button type="button" onClick={() => handleEdit(contact._id)}>
-                    Edit
+                    <img src={EditIcon} alt="" />
                   </button>
                   <Form
                     method="delete"
@@ -57,7 +60,9 @@ const ContactsTable = ({ contacts }) => {
                       name="contact_id"
                       value={contact._id}
                     />
-                    <button type="submit">Delete</button>
+                    <button type="submit">
+                      <img src={DeleteIcon} alt="" />
+                    </button>
                   </Form>
                 </td>
               </tr>
