@@ -1,0 +1,24 @@
+.registerSection {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  & > :last-child {
+    margin-top: 20px;
+  }
+}
+
+.registerForm {
+  margin-top: 20px;
+
+  & > div:last-child {
+    margin-top: 20px;
+  }
+
+  button {
+    align-self: start;
+  }
+}

@@ -1,12 +1,14 @@
 import { Form, Link, useActionData } from "react-router-dom";
+import styles from "./Register.module.css";
+import { formPrimary, buttonPrimary } from "../../App.module.css";
 
 const Register = () => {
   const errors = useActionData();
 
   return (
-    <section>
+    <section className={styles.registerSection}>
       <h2>Register now!</h2>
-      <Form method="post">
+      <Form method="post" className={`${styles.registerForm} ${formPrimary}`}>
         <div>
           <label htmlFor="first_name">First name</label>
           <input type="text" name="first_name" id="first_name" required />
@@ -53,11 +55,13 @@ const Register = () => {
               .map(({ msg }, index) => <span key={index}>{msg}</span>)}
         </div>
         <div>
-          <button type="submit">Register</button>
+          <button type="submit" className={buttonPrimary}>
+            Register
+          </button>
         </div>
       </Form>
       <p>
-        <Link to={"/login"}>Back to Login</Link>
+        <Link to={"/login"}>&#xff1c; Back to Login</Link>
       </p>
     </section>
   );
