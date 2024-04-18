@@ -1,0 +1,19 @@
+.loginSection {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.loginForm {
+  margin-top: 20px;
+
+  & > div:last-child {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+}
