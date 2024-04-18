@@ -20,6 +20,7 @@ import createContactAction from "./actions/createContactAction.js";
 import editContactAction from "./actions/editContactAction.js";
 import contactLoader from "./loaders/contactLoader.js";
 import logoutLoader from "./loaders/logoutLoader.js";
+import "./main.css";
 
 const baseUrl = import.meta.env.VITE_BACKEND_URL;
 const router = createBrowserRouter([
