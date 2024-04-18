@@ -1,0 +1,59 @@
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+
+  a {
+    align-self: end;
+    margin-bottom: 6px;
+  }
+}
+
+main {
+  padding: 50px 0;
+}
+
+.formPrimary {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+
+  & > div {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  input {
+    background-color: white;
+    font-size: inherit;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 40px;
+
+    &:focus {
+      outline: 2px solid white;
+      outline-offset: 2px;
+    }
+  }
+
+  span {
+    color: rgb(255, 0, 0);
+    font-weight: bold;
+    margin-left: 5px;
+  }
+}
+
+.buttonPrimary {
+  color: inherit;
+  background-color: #053b44;
+  font-size: inherit;
+  padding: 5px 10px;
+  border: 2px solid white;
+  border-radius: 40px;
+
+  &:hover {
+    color: black;
+    background-color: white;
+  }
+}
