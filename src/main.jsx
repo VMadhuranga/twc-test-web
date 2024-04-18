@@ -149,7 +149,7 @@ const router = createBrowserRouter([
           const formData = Object.fromEntries(
             (await request.formData()).entries(),
           );
-          console.log(formData);
+
           const errorData = await editContactAction(
             baseUrl,
             params.user_id,
