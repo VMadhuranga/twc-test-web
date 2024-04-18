@@ -1,0 +1,19 @@
+.contactsSectionWithContacts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+
+  button[data-add-new] {
+    justify-self: end;
+  }
+}
+
+.contactsSectionWithoutContacts {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  button[data-add-new] {
+    align-self: start;
+  }
+}
